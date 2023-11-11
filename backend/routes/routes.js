@@ -8,7 +8,9 @@ const {
 } = require("../controller/todayTasksControllers");
 
 const router = express.Router();
-
+router.get("/", (req, res) => {
+  res.send("API logged");
+});
 router.post("/signup", singUp);
 router.post("/signin", singIn);
 router.post("/getTodayTasks", getTodayTasks);

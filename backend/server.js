@@ -7,6 +7,9 @@ require("dotenv").config();
 const todoRouter = require("./routes/routes");
 app.use(express.json());
 app.use(cors());
+app.get("/", (req, res) => {
+  res.send("HELLO");
+});
 app.use("/api", todoRouter);
 
 const start = async () => {

@@ -1,0 +1,49 @@
+.formContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  /* width: 500px; */
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.uiDivider {
+  border-bottom: 1px solid black;
+  width: 300px;
+  margin: 25px;
+}
+
+.name {
+  display: flex;
+  gap: 10px;
+  max-width: 300px;
+  /* overflow: hidden; */
+}
+
+.error {
+  color: red;
+  margin-top: 2px;
+  padding-left: 2px;
+  font-size: 11px;
+}
+
+.signUpButton {
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: 300px;
+  font-weight: 400;
+  background-color: #4169e1;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+}

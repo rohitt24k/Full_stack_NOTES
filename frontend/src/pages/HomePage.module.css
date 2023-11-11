@@ -1,0 +1,49 @@
+.homepage {
+  padding: 2rem 5rem;
+  display: flex;
+  min-height: 100vh;
+  gap: 1rem;
+  position: relative;
+  background-color: #ffffff;
+}
+
+/* .leftPadding {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background-color: #ffffff;
+  width: 4rem;
+  height: 100vh;
+}
+
+.fixedWidth {
+  width: var(--width-size);
+  flex: 0 0 auto;
+  padding: 0.625rem;
+  transition: all 0.5s ease;
+}
+
+.fixedWidth span {
+  cursor: pointer;
+  position: fixed;
+} */
+
+.mainSideBarContainer {
+  height: calc(100vh - 4rem);
+  position: sticky;
+  width: var(--width-size);
+  transition: all 0.5s ease;
+}
+
+.sideBarHidden {
+  width: 5rem;
+}
+.otherThanSideBar {
+  transition: all 2s ease;
+  flex: 1;
+}
+
+.hiddenSide {
+  width: 3rem;
+}

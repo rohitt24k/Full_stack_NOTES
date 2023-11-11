@@ -1,0 +1,40 @@
+:root {
+  font-size: 16px;
+
+  --H6: 61px;
+  --H5: 48px;
+  --H4: 31px;
+  --H3: 25px;
+  --H2: 20px;
+  --H1: 16px;
+
+  --body-large: 20px;
+  --body-medium-large: 16px;
+  --body-medium: 13px;
+  --body-small: 10px;
+
+  --label-large: 20px;
+  --label-medium-large: 16px;
+  --label-medium: 13px;
+  --label-small: 10px;
+
+  --font-size-small: 13px;
+  --font-size-medium-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+  --heading-font-size: 40px;
+  --button-font-size: 20px;
+  --input-font-size: 16px;
+  --width-size: 300px;
+  color: #1d1d1d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}

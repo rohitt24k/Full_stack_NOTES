@@ -1,0 +1,250 @@
+.mainContainer {
+  display: flex;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  padding: 0 1rem 0 1rem;
+}
+
+.mainHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mainHeader h1 {
+  font-size: var(--H6);
+}
+
+.mainHeader div {
+  font-size: var(--H5);
+  border: 1px solid rgb(201, 194, 194);
+  padding: 0.175em 0.3em;
+  border-radius: 0.275em;
+  font-weight: 500;
+}
+
+.mainHeaderInput {
+  font-size: var(--body-medium-large);
+  border: 1px solid #fff;
+  border-radius: 0.75em;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  position: relative;
+  height: 2.5rem;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  box-shadow: -1.6px 1.6px 4.8px 0px rgba(0, 0, 0, 0.05),
+    -4.8px 8px 9.6px 0px rgba(0, 0, 0, 0.04),
+    -12px 17.6px 12.8px 0px rgba(0, 0, 0, 0.03),
+    -20.8px 31.2px 15.2px 0px rgba(0, 0, 0, 0.01),
+    -32px 48.8px 16px 0px rgba(0, 0, 0, 0);
+}
+
+.mainHeaderInput span {
+  font-size: 1.35em;
+  top: 0.4em;
+  left: 1em;
+  position: absolute;
+}
+
+.mainHeaderInput input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-left: 2em;
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  transition: all 0.5s ease;
+}
+
+.hideScreen {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .hideScreen {
+    display: block;
+  }
+  .mainHeaderInputFocus span {
+    cursor: pointer;
+    animation: menuAnimation 0.5s ease forwards;
+  }
+
+  @keyframes menuAnimation {
+    30% {
+      top: 0.3em;
+      left: -40px;
+    }
+    31% {
+      left: 110%;
+    }
+    75% {
+      transform: rotate(0);
+    }
+    100% {
+      top: 0.3em;
+      left: calc(100% - 40px);
+      transform: rotate(45deg);
+    }
+  }
+
+  .mainHeaderInputFocus {
+    height: 300px;
+  }
+
+  .mainHeaderInputFocus input {
+    margin-bottom: 0;
+    padding: 0.4em;
+    padding-right: 35px;
+    border-radius: 0.3em;
+  }
+
+  .uiDivider {
+    border-bottom: 1px solid rgb(181, 172, 172);
+    margin: 0.2em 0;
+  }
+
+  .mainHeaderInput textarea {
+    padding: 0.4em;
+    resize: none;
+    width: 100%;
+    font-size: 1em;
+    font-weight: 200;
+    outline: none;
+    resize: none;
+    /* border-radius: 0.3em; */
+    border: none;
+  }
+}
+
+.todayData hr:first-child {
+  display: none;
+}
+.todayData hr {
+  /* border-color: rgb(231, 223, 223); */
+  opacity: 0.3;
+}
+
+/* .tasksItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tasksItem_main {
+  display: flex;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.tasksItem_main_date {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+.tasksItem_main_date span {
+  font-size: 1.2em;
+}
+
+.verticalUiDivider {
+  background-color: rgb(171, 164, 164);
+  width: 0.1rem;
+  height: 1rem;
+  margin: 0 1rem;
+}
+
+.tasksTag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+.colorBox {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  background-color: burlywood;
+}
+
+.countBox {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  background-color: rgb(228, 226, 222);
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+} */
+
+.tasksItem {
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.tasksItem input[type="checkbox"] {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.tasksItem_main {
+  display: flex;
+  align-items: center;
+}
+
+.tasksItem_main_date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tasksItem_main_date span {
+  font-size: 1.25rem;
+}
+
+.tasksItem_main_date p {
+  font-size: var(--body-medium);
+}
+
+.verticalUiDivider {
+  margin: 0 0.75rem;
+  border-left: 1px solid #1d1d1d;
+  height: 1rem;
+}
+
+.countBox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+  text-align: center;
+  background-color: #d9d9d9;
+}
+
+.tasksTag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.colorBox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+  background-color: #3d5af1;
+}
+
+.colorBox p {
+  font-size: var(--body-medium);
+}
+/* ==============================================
+   Right Side Bar
+   ============================================== */

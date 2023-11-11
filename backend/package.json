@@ -4,7 +4,7 @@
   "description": "this will be the backend for the TODO app",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "ROHIT KUMAR",
   "license": "ISC",

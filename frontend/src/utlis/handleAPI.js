@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const baseURL = "http://localhost:5000/api";
-const baseURL = "https://full-stack-notes-api.vercel.app/";
+const baseURL = "http://localhost:5000/api";
+// const baseURL = "https://full-stack-notes-api.vercel.app/";
 
 //ADD new users
 const signUp = async (signUpData, setServerError, setSignUpData) => {

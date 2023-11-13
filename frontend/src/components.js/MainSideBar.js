@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "./MainSideBar.module.css";
+import { useNavigate } from "react-router-dom";
 
 function MainSideBar({ setShowSideBar, showSideBar }) {
   const navBar = useRef(null);
@@ -21,6 +22,16 @@ function MainSideBar({ setShowSideBar, showSideBar }) {
       }, 300);
     }
   }, [showSideBar]);
+
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    document.cookie = `userID=;expires=Thu, 01 Jan 1970 00:00:00 UTC`;
+    document.cookie = `emailId=;expires=Thu, 01 Jan 1970 00:00:00 UTC`;
+    sessionStorage.clear();
+
+    navigate("/signin");
+  }
 
   return (
     <nav ref={navBar} className={`${styles.nav}`}>
@@ -108,7 +119,7 @@ function MainSideBar({ setShowSideBar, showSideBar }) {
           </span>
           <p>Setting</p>
         </div>
-        <div>
+        <div onClick={handleLogout}>
           <span className={`material-symbols-outlined ${styles.icon}`}>
             logout
           </span>

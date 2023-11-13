@@ -23,6 +23,8 @@ function SignIn({ setUserID, setemailId }) {
           );
 
           if (status) {
+            console.log("hey no problem");
+
             navigate("/homepage");
           }
         }
@@ -59,7 +61,7 @@ function SignIn({ setUserID, setemailId }) {
   }
 
   return (
-    <>
+    <div className={styles.formContainer}>
       <form onSubmit={handleSinginSubmit} className={styles.form}>
         <h1>SIGNIN</h1>
         <div className={styles.uiDivider}></div>
@@ -80,9 +82,17 @@ function SignIn({ setUserID, setemailId }) {
           errors={errors}
         />
         {serverError ? <p className={styles.error}>*{serverError}</p> : <></>}
-        <button className={styles.signInButton}>LoginIn</button>
+        <button className={styles.signInButton}>Login</button>
       </form>
-    </>
+      <button
+        className={styles.signUpButton}
+        onClick={() => {
+          navigate("/signup");
+        }}
+      >
+        SignUp
+      </button>
+    </div>
   );
 }
 

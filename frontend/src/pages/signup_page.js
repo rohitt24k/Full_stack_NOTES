@@ -143,6 +143,14 @@ function Singup() {
         {serverError ? <p className={styles.error}>*{serverError}</p> : <></>}
         <button className={styles.signUpButton}>SignUP</button>
       </form>
+      <button
+        className={styles.signInButton}
+        onClick={() => {
+          navigate("/signin");
+        }}
+      >
+        Login
+      </button>
     </div>
   );
 }

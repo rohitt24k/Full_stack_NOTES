@@ -29,12 +29,26 @@ const signUp = async (signUpData, setServerError, setSignUpData) => {
 
 const signIn = async (userData, setUserID, setemailId, setServerError) => {
   try {
+    const currentDate = new Date();
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    const expirationDate = currentDate.toUTCString();
+
+    console.log(expirationDate);
+
     const data = await axios.post(`${baseURL}/signin`, userData);
-    setUserID(data.data.data._id);
-    setemailId(data.data.data.email);
+    // sessionStorage.setItem("userID", data.data.data._id);
+    // sessionStorage.setItem("emailId", data.data.data.email);
+    document.cookie = `userID=${data.data.data._id};expires=${expirationDate}`;
+    document.cookie = `emailId=${data.data.data.email};expires=${expirationDate}`;
+    // console.log(document.cookie);
+
+    // setUserID(data.data.data._id);
+    // setemailId(data.data.data.email);
     setServerError("");
     return true;
   } catch (error) {
+    // console.log(error);
+
     setServerError(error.response.data.error);
     return false;
   }

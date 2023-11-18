@@ -1,16 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./RightSideBar.module.css";
-import { addTodayTasks, updateTask } from "../utlis/handleAPI";
-
-function validateForm(Task, setError) {
-  if (!Task.name) {
-    setError({
-      name: "*Please Enter the Task Name to Save it.",
-    });
-  } else {
-    setError({});
-  }
-}
+import { addTodayTasks, deleteTask, updateTask } from "../utlis/handleAPI";
 
 function RightSideBar({
   showRightSideBar,
@@ -55,18 +45,25 @@ function RightSideBar({
   useEffect(() => {
     if (!Object.keys(error).length) {
       setShowRightSideBar(false);
-      console.log("hey");
 
       setIsEditTag(false);
       if (!isEditTag) {
         addTodayTasks(Task, setData, userID);
-        console.log("task is being added");
       } else {
         updateTask(Task, setData, userID);
-        console.log("task is bein updated");
       }
     }
   }, [error]);
+
+  function validateForm(Task, setError) {
+    if (!Task.name) {
+      setError({
+        name: "*Please Enter the Task Name to Save it.",
+      });
+    } else {
+      setError({});
+    }
+  }
 
   function CreateTag({ text }) {
     return <div className={styles.tagDiv}>{text}</div>;
@@ -76,7 +73,7 @@ function RightSideBar({
     return (
       <div className={styles.subtask}>
         <input type="checkbox" />
-        {text}
+        <p>{text}</p>
       </div>
     );
   }
@@ -99,7 +96,7 @@ function RightSideBar({
     >
       <div className={styles.rightSideBar}>
         <header>
-          <h3>Task:</h3>
+          <h3>Task :</h3>
           <span
             className="material-symbols-outlined"
             onClick={() => {
@@ -110,90 +107,100 @@ function RightSideBar({
             close
           </span>
         </header>
-        <input
-          type="text"
-          placeholder="Add New Task"
-          ref={inputEL}
-          value={Task.name}
-          onChange={(e) => {
-            setTask((v) => ({ ...v, name: e.target.value }));
-          }}
-        />
-        {error.name ? <p className={styles.error}>error.name</p> : ""}
-        <textarea
-          rows="5"
-          placeholder="Description"
-          value={Task.description}
-          onChange={(e) => {
-            setTask((v) => ({ ...v, description: e.target.value }));
-          }}
-        ></textarea>
-        <div>
-          <p>List</p>
-          <select
-            id="cars"
-            value={Task.list}
-            onChange={(e) => {
-              setTask((v) => ({ ...v, list: e.target.value }));
-            }}
-          >
-            {userList.map((v) => (
-              <option value={v}>{v}</option>
-            ))}
-            <option value="">none</option>
-          </select>
-        </div>
-        <div>
-          <p>Duedate</p>
+        <div className={styles.inputContainer}>
           <input
-            type="date"
-            min={formattedDateMin}
-            max={formattedDateMax}
-            value={Task.duedate}
+            type="text"
+            placeholder="Add New Task"
+            ref={inputEL}
+            value={Task.name}
             onChange={(e) => {
-              setTask((v) => ({ ...v, duedate: e.target.value }));
+              setTask((v) => ({ ...v, name: e.target.value }));
             }}
+            disabled={isEditTag}
           />
         </div>
-        <div>
-          <p>Tags</p>
-          {Task.tags.map((v) => (
-            <CreateTag text={v} key={v} />
-          ))}
-          <div className={styles.tagDiv}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-
-                setTask((v) => ({ ...v, tags: [...v.tags, addNewTag] }));
-                tagInputEl.current.blur();
-              }}
-            >
-              <input
-                type="text"
-                className={styles.addNewTagInputBox}
-                value={addNewTag}
-                onFocus={() => {
-                  setAddNewTag("");
-                }}
-                onBlur={() => {
-                  setAddNewTag("+ Add Tag");
-                }}
-                style={
-                  addNewTag !== "+ Add Tag" ? { textTransform: "none" } : {}
-                }
+        {error.name ? <p className={styles.error}>error.name</p> : ""}
+        <div className={styles.descriptionContainer}>
+          <textarea
+            rows="5"
+            placeholder="Description"
+            value={Task.description}
+            onChange={(e) => {
+              setTask((v) => ({ ...v, description: e.target.value }));
+            }}
+          ></textarea>
+        </div>
+        <div className={styles.fieldvalue}>
+          <div className={styles.fieldContainer}>
+            <p>List</p>
+            <p>Duedate</p>
+            <p>Tags</p>
+          </div>
+          <div className={styles.valueContainer}>
+            <div className={styles.listContainer}>
+              <select
+                id="cars"
+                value={Task.list}
                 onChange={(e) => {
-                  setAddNewTag(e.target.value);
+                  setTask((v) => ({ ...v, list: e.target.value }));
                 }}
-                ref={tagInputEl}
+              >
+                {userList.map((v) => (
+                  <option value={v}>{v}</option>
+                ))}
+                <option value="">none</option>
+              </select>
+            </div>
+            <div className={styles.dueDateContainer}>
+              <input
+                type="date"
+                min={formattedDateMin}
+                max={formattedDateMax}
+                value={Task.duedate}
+                onChange={(e) => {
+                  setTask((v) => ({ ...v, duedate: e.target.value }));
+                }}
               />
-            </form>
+            </div>
+            <div className={styles.tagsContainer}>
+              {Task.tags.map((v) => (
+                <CreateTag text={v} key={v} />
+              ))}
+              <div className={styles.tagInputContainer}>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+
+                    setTask((v) => ({ ...v, tags: [...v.tags, addNewTag] }));
+                    tagInputEl.current.blur();
+                  }}
+                >
+                  <input
+                    type="text"
+                    className={styles.addNewTagInputBox}
+                    value={addNewTag}
+                    onFocus={() => {
+                      setAddNewTag("");
+                    }}
+                    onBlur={() => {
+                      setAddNewTag("+ Add Tag");
+                    }}
+                    style={
+                      addNewTag !== "+ Add Tag" ? { textTransform: "none" } : {}
+                    }
+                    onChange={(e) => {
+                      setAddNewTag(e.target.value);
+                    }}
+                    ref={tagInputEl}
+                  />
+                </form>
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.subTasks}>
           Subtasks:
-          <div>
-            +
+          <div className={styles.subTasksInputContainer}>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -212,26 +219,34 @@ function RightSideBar({
                 }
               }}
             >
-              <input
-                type="text"
-                placeholder="Add New Subtask"
-                value={newSubtaskName}
-                onChange={(e) => {
-                  setNewSubTaskName(e.target.value);
-                }}
-              />
+              <label>
+                <span>+</span>
+                <input
+                  type="text"
+                  placeholder="Add New Subtask"
+                  value={newSubtaskName}
+                  onChange={(e) => {
+                    setNewSubTaskName(e.target.value);
+                  }}
+                />
+              </label>
             </form>
           </div>
           <div className={styles.uiDivider}></div>
-          {Task.subtasks.map((v) => (
-            <CreateSubTasks text={v.name} key={v.name} />
-          ))}
+          <div className={styles.subtasksContainer}>
+            {Task.subtasks.map((v) => (
+              <CreateSubTasks text={v.name} key={v.name} />
+            ))}
+          </div>
         </div>
-        <footer>
+        <footer className={styles.footer}>
           <button
             onClick={() => {
               setShowRightSideBar(false);
               setIsEditTag(false);
+              if (isEditTag) {
+                deleteTask(Task, setData, userID);
+              }
             }}
           >
             Delete Task

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseURL = "http://localhost:5000/api";
-const baseURL = "https://notesapi-dkp8.onrender.com/api";
+const baseURL = "http://localhost:5000/api";
+// const baseURL = "https://notesapi-dkp8.onrender.com/api";
 
 //ADD new users
 const signUp = async (signUpData, setServerError, setSignUpData) => {
@@ -58,11 +58,6 @@ const getTodayTasks = async (setData, userID) => {
   try {
     const data = await axios.post(`${baseURL}/getTodayTasks`, { userID });
     setData(data.data.data);
-
-    console.log("The retrieved data is:");
-    console.log("");
-    console.log("");
-    console.log(data.data.data);
   } catch (error) {
     console.log(error);
   }
@@ -75,6 +70,8 @@ const addTodayTasks = async (newTask, setData, userID) => {
       data: newTask,
     });
     console.log(data);
+
+    setData(data.data.data);
   } catch (error) {
     console.log(error);
   }
@@ -82,12 +79,12 @@ const addTodayTasks = async (newTask, setData, userID) => {
 
 const updateTask = async (task, setData, userID) => {
   try {
-    // console.log(task);
-    // console.log(userID);
-
-    const data = await axios.patch(`${baseURL}/addtodayTasks`, {
+    const data = await axios.post(`${baseURL}/updateTodayTasks`, {
       userID,
       data: task,
+    });
+    setData((data) => {
+      return data.map((elem) => (elem._id === task._id ? task : elem));
     });
     console.log(data);
   } catch (error) {
@@ -95,4 +92,19 @@ const updateTask = async (task, setData, userID) => {
   }
 };
 
-export { signUp, signIn, getTodayTasks, addTodayTasks, updateTask };
+const deleteTask = async (task, setData, userID) => {
+  try {
+    const data = await axios.post(`${baseURL}/deleteTodayTasks`, {
+      userID,
+      data: task,
+    });
+    setData((data) => {
+      return data.filter((elem) => elem._id !== task._id);
+    });
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { signUp, signIn, getTodayTasks, addTodayTasks, updateTask, deleteTask };

@@ -17,27 +17,31 @@
   flex-direction: column;
   gap: 0.6rem;
   position: fixed;
-
-  padding: 1rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 1.25rem;
   height: calc(100vh - 4rem);
   width: 350px;
   background-color: #efefef;
-  box-shadow: -4.8px 5.6px 16px 0px rgba(0, 0, 0, 0.05),
+  /* box-shadow: -4.8px 5.6px 16px 0px rgba(0, 0, 0, 0.05),
     -18.4px 22.4px 28.8px 0px rgba(0, 0, 0, 0.04),
     -42.4px 50.4px 39.2px 0px rgba(0, 0, 0, 0.03),
     -74.4px 88.8px 46.4px 0px rgba(0, 0, 0, 0.01),
-    -116.8px 139.2px 51.2px 0px rgba(0, 0, 0, 0);
+    -116.8px 139.2px 51.2px 0px rgba(0, 0, 0, 0); */
+  box-shadow: -4px 4px 11px 0px rgba(0, 0, 0, 0.1),
+    -14px 14px 20px 0px rgba(0, 0, 0, 0.09),
+    -33px 33px 28px 0px rgba(0, 0, 0, 0.05),
+    -58px 58px 33px 0px rgba(0, 0, 0, 0.01),
+    -90px 90px 36px 0px rgba(0, 0, 0, 0);
 }
 
 .rightSideBar header {
   display: flex;
-  align-items: center;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
 
 .rightSideBar header h3 {
-  font-size: var(--font-size-large);
   text-transform: uppercase;
 }
 
@@ -45,121 +49,125 @@
   cursor: pointer;
 }
 
-.rightSideBar > input {
-  /* background-color: blue; */
-  width: 100%;
-  font-size: var(--font-size-medium-small);
-  padding: 0.4em 0.5em;
-  border-radius: 0.4em;
+.inputContainer input {
   outline: none;
-  background-color: #f4f4f4;
-  border: 1px solid #dddddd;
-}
-
-.rightSideBar > .error {
-  font-size: var(--font-size-small);
-  color: red;
-  font-weight: 300;
-}
-
-.rightSideBar > textarea {
+  border: none;
   width: 100%;
-  font-size: var(--font-size-medium-small);
-  padding: 0.4em 0.5em;
-  border-radius: 0.4em;
-  background-color: #f4f4f4;
-  border: 1px solid #dddddd;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 1.25rem;
+  background-color: #d9d9d9;
+  font-size: var(--input-font-size);
+  font-weight: 400;
+}
+
+.descriptionContainer textarea {
+  width: 100%;
+  height: 8rem;
   resize: none;
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background-color: #d9d9d9;
+  font-size: var(--input-font-size);
+  font-weight: 400;
   outline: none;
+  border: none;
 }
 
-.rightSideBar > div {
+.fieldvalue {
+  display: flex;
+  gap: 2rem;
+}
+
+.fieldContainer p:not(:first-child) {
+  margin-top: 0.6rem;
+  font-size: var(--body-medium-large);
+}
+
+.valueContainer {
   display: flex;
   gap: 0.5rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.rightSideBar .addNewTagInputBox {
-  border: none;
-  outline: none;
-  background-color: rgb(194, 250, 250);
-  font-size: var(--font-size-small);
-  width: 70px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.rightSideBar .tagDiv {
-  font-size: var(--font-size-small);
-  padding: 0.2em 0.6em;
-  border-radius: 0.4em;
-  background-color: rgb(194, 250, 250);
-  cursor: pointer;
-}
-
-.rightSideBar .subTasks {
-  align-items: baseline;
   flex-direction: column;
-  gap: 0.1rem;
 }
 
-.rightSideBar .subTasks div:first-child {
-  border: 2px solid black;
-  font-size: var(--font-size-medium-small);
-  font-weight: 600;
-  width: 100%;
+.listContainer select,
+.dueDateContainer input {
+  font-size: var(--body-medium-large);
+}
+
+.tagsContainer {
   display: flex;
-  padding: 0 1.5em;
-  align-items: center;
-  border-radius: 0.4em;
-  border: none;
-  margin-top: 0.5rem;
-  /* border: 1px solid rgb(143, 137, 137); */
+  flex-wrap: wrap;
+  gap: 0.3rem;
 }
 
-.rightSideBar .subTasks div:first-child input {
-  width: 100%;
-  font-size: var(--font-size-medium-small);
-  padding: 0.4em 0.5em;
+.tagInputContainer input {
+  width: 5rem;
   border: none;
   outline: none;
-  background-color: #f4f4f4;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
 }
 
-.rightSideBar .subTasks .uiDivider {
-  border-top: 1px solid rgb(174, 172, 172);
-  margin: 0 0 1rem 0;
+.tagDiv {
+  font-size: var(--body-medium);
+  background-color: #22d1ee;
+  /* text-align: cw; */
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+}
+
+.subTasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.subTasksInputContainer form {
+  font-size: var(--H2);
+  border-bottom: 1px solid black;
   width: 100%;
 }
 
-.rightSideBar .subTasks .subtask {
+.subTasksInputContainer input {
+  font-size: var(--body-medium-large);
+  width: 90%;
+  padding: 0.2rem 0.4rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.subtasksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.subtask {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0.2em 1.5rem;
-  width: 100%;
-  font-size: var(--font-size-medium-small);
-  border-radius: 0.4em;
-  background-color: #ebebeb;
-  margin-bottom: 0.2em;
+  gap: 0.3rem;
 }
 
-.rightSideBar footer {
-  flex: 1;
+.subtask p {
+  font-size: var(--body-medium-large);
+}
+
+.footer {
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
-  align-items: end;
 }
 
-.rightSideBar footer button {
-  /* outline: none; */
-  font-size: var(--font-size-medium);
-  border: 1px solid #dddddd;
-  padding: 0.6em 2em;
-  border-radius: 0.4em;
-  cursor: pointer;
+.footer button {
+  padding: 0.7rem 2rem;
+  font-size: var(--body-medium-large);
+  border: 1px solid black;
+  border-radius: 2rem;
 }
-.rightSideBar footer button:nth-child(2) {
-  background-color: #ffd43b;
+
+.footer button:nth-child(2) {
+  background-color: #ff895d;
+  border: none;
 }

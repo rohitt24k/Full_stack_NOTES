@@ -11,15 +11,17 @@ function MainSideBar({ setShowSideBar, showSideBar }) {
     if (!showSideBar) {
       navBar.current.style.width = "5rem";
       navBar.current.classList.add(styles.visiblility);
-      setTimeout(() => {
-        navBar.current.classList.add(styles.hideSideBar);
-      }, 100);
+      navBar.current.classList.add(styles.hideSideBar);
+      // setTimeout(() => {
+      //   navBar.current.classList.add(styles.hideSideBar);
+      // }, 100);
     } else {
       navBar.current.style.width = "var(--width-size)";
       navBar.current.classList.remove(styles.hideSideBar);
-      setTimeout(() => {
-        navBar.current.classList.remove(styles.visiblility);
-      }, 300);
+      navBar.current.classList.remove(styles.visiblility);
+      // setTimeout(() => {
+      //   navBar.current.classList.remove(styles.visiblility);
+      // }, 300);
     }
   }, [showSideBar]);
 

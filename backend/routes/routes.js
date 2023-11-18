@@ -5,6 +5,7 @@ const {
   getTodayTasks,
   addTodayTasks,
   updateTask,
+  deleteTask,
 } = require("../controller/todayTasksControllers");
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.post("/signup", singUp);
 router.post("/signin", singIn);
 router.post("/getTodayTasks", getTodayTasks);
 router.post("/addtodayTasks", addTodayTasks);
-router.patch("/addtodayTasks", updateTask);
+router.post("/updateTodayTasks", updateTask);
+router.post("/deleteTodayTasks", deleteTask);
 
 module.exports = router;

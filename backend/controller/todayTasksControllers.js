@@ -18,29 +18,33 @@ const addTodayTasks = async (req, res) => {
     { $push: { data: data.data } },
     { new: true }
   );
-  console.log(newData);
 
-  res.send("GOOD Saved");
+  res.send(newData);
 };
 
 const updateTask = async (req, res) => {
   const data = req.body;
+  const userID = data.userID;
   console.log(data);
+  const database = await todayTasksModel.findOneAndUpdate(
+    { "user.id": userID },
+    { $set: { "data.$[elem]": data.data } },
+    { arrayFilters: [{ "elem._id": data.data._id }] }
+  );
 
-  // const database = await todayTasksModel.findOneAndUpdate(
-  //   {
-  //     "user.id": req.body.userID,
-  //   },
-  //   {
-  //     $set: { ["data${data.index}"]: data.data },
-  //   }
-  // );
-  // console.log(database);
-
-  // const data =
-  // console.log(newData);
-
-  res.send("GOOD Saved");
+  res.send("The data is updated");
 };
 
-module.exports = { getTodayTasks, addTodayTasks, updateTask };
+const deleteTask = async (req, res) => {
+  const data = req.body;
+  const userID = data.userID;
+  console.log(data);
+  const database = await todayTasksModel.findOneAndUpdate(
+    { "user.id": userID },
+    { $pull: { data: { _id: data.data._id } } }
+  );
+
+  res.send("The data is deleted");
+};
+
+module.exports = { getTodayTasks, addTodayTasks, updateTask, deleteTask };

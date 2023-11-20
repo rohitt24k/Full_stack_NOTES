@@ -165,6 +165,7 @@
   font-size: var(--body-medium-large);
   border: 1px solid black;
   border-radius: 2rem;
+  cursor: pointer;
 }
 
 .footer button:nth-child(2) {
